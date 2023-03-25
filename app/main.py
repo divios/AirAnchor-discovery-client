@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 ip = socket.gethostbyname(socket.gethostname())
 # The flowing code will register your server to eureka server and also start to send heartbeat every 30 seconds
-eureka_client.init(eureka_server="http://192.168.1.169:8761",
+eureka_client.init(eureka_server=os.environ.get('REMOTE'),
                    app_name=os.environ.get('APP_NAME'),
                    instance_ip=os.environ.get('HOST'),
                    instance_port=int(os.environ.get('PORT')))
