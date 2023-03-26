@@ -12,7 +12,9 @@ ip = socket.gethostbyname(socket.gethostname())
 eureka_client.init(eureka_server=os.environ.get('REMOTE'),
                    app_name=os.environ.get('APP_NAME'),
                    instance_ip=os.environ.get('HOST'),
-                   instance_port=int(os.environ.get('PORT')))
+                   renewal_interval_in_secs=int(os.environ.get('RENEWAL_INTERVAL', 5)),
+                   duration_in_secs=int(os.environ.get('DURATION_SECONDS', 20)),
+                   instance_port=int(os.environ.get('PORT', 8000)))
 
 # Shut down the Eureka client when the application exits
 @app.before_first_request
